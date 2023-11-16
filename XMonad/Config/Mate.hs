@@ -31,7 +31,7 @@ module XMonad.Config.Mate (
 import XMonad
 import XMonad.Config.Desktop
 import XMonad.Util.Run (safeSpawn)
-import XMonad.Util.Ungrab
+import qualified XMonad.Util.Ungrab as Ungrab (unGrab)
 import XMonad.Prelude (toUpper)
 
 import qualified Data.Map as M
@@ -55,7 +55,7 @@ mateConfig = desktopConfig
 
 mateKeys XConfig{modMask = modm} = M.fromList
     [ ((modm, xK_p), mateRun)
-    , ((modm, xK_d), unGrab >> matePanel "MAIN_MENU")
+    , ((modm, xK_d), Ungrab.unGrab >> matePanel "MAIN_MENU")
     , ((modm .|. shiftMask, xK_q), mateLogout) ]
 
 -- | Launch the "Run Application" dialog.  mate-panel must be running for this
